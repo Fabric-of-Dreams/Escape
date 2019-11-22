@@ -16,9 +16,9 @@ UPositionReport::UPositionReport()
 // Called when the game starts
 void UPositionReport::BeginPlay()
 {
-	Super::BeginPlay(); //Посмотреть как работает
+	Super::BeginPlay();
 
-	UE_LOG(LogTemp, Warning, TEXT("Position report reporting for duty!"));
+	UE_LOG(LogTemp, Warning, TEXT("Position report reporting for duty on Chair!"));
 
 }
 
