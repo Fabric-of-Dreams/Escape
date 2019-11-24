@@ -27,7 +27,7 @@ void UOpenDoor::BeginPlay()
 
 void UOpenDoor::OpenDoor()
 {
-	GetOwner()->SetActorRotation(FRotator(0.f, -60.f, 0.f));
+	GetOwner()->SetActorRotation(FRotator(0.f, OpenAngle, 0.f));
 }
 
 
