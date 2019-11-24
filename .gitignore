@@ -7,12 +7,14 @@
 */DerivedDataCache
 */Intermediate
 */Saved
-Escape/Content/StarterContent/
+Escape/Content/StarterContent/Textures
+Escape/Content/StarterContent/HDRI
 
 ######################
 # VS Generated Files #
 ######################
 
 *.VC.db
+*.suo
 */.vs
 Escape/Escape.sln
