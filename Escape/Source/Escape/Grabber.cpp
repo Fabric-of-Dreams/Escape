@@ -45,12 +45,8 @@ void UGrabber::CheckInput()
 	if (InputComponent)
 	{
 		// Bind the input axis
-		//UE_LOG(LogTemp, Warning, TEXT("bGrabbed = %s"), bGrabbed ? TEXT("true") : TEXT("false"));
-		if (!bGrabbed)
-			InputComponent->BindAction("Grab", IE_Pressed, this, &UGrabber::Grab);
-		else
-			InputComponent->BindAction("Release", IE_Pressed, this, &UGrabber::Release);
-		//CheckInput();
+		InputComponent->BindAction("Grab", IE_Pressed, this, &UGrabber::Grab);
+		InputComponent->BindAction("Grab", IE_Released, this, &UGrabber::Release);
 	}
 	else
 	{
@@ -59,15 +55,11 @@ void UGrabber::CheckInput()
 }
 
 void UGrabber::Grab() {
-	bGrabbed = true; // todo change bGrabbed only if an item is grabbed
 	UE_LOG(LogTemp, Warning, TEXT("Grab btn pressed"));
-	//UE_LOG(LogTemp, Warning, TEXT("bGrabbed = %s"), bGrabbed ? TEXT("true") : TEXT("false"));
 }
 
 void UGrabber::Release() {
-	bGrabbed = false;
-	UE_LOG(LogTemp, Warning, TEXT("Release btn pressed"));
-	//UE_LOG(LogTemp, Warning, TEXT("bGrabbed = %s"), bGrabbed ? TEXT("true") : TEXT("false"));
+	UE_LOG(LogTemp, Warning, TEXT("Grab btn released"));
 }
 
 // Called every frame
