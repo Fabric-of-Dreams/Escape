@@ -43,4 +43,8 @@ private:
 
 	//Return hit for first physics body in reach
 	FHitResult GetFirstPhysicsBodyInReach();
+
+	FVector GetReachLineStart();
+
+	FVector GetReachLineEnd();
 };
