@@ -36,11 +36,21 @@ void UGrabber::BeginPlay()
 		UE_LOG(LogTemp, Error, TEXT("No PhysicsHandleComponent found in %s"), *GetOwner()->GetName());
 	}
 
+	CheckInput();
+}
+
+void UGrabber::CheckInput()
+{
 	InputComponent = GetOwner()->FindComponentByClass<UInputComponent>();
 	if (InputComponent)
 	{
 		// Bind the input axis
-		InputComponent->BindAction("Grab", IE_Pressed, this, &UGrabber::Grab);
+		//UE_LOG(LogTemp, Warning, TEXT("bGrabbed = %s"), bGrabbed ? TEXT("true") : TEXT("false"));
+		if (!bGrabbed)
+			InputComponent->BindAction("Grab", IE_Pressed, this, &UGrabber::Grab);
+		else
+			InputComponent->BindAction("Release", IE_Pressed, this, &UGrabber::Release);
+		//CheckInput();
 	}
 	else
 	{
@@ -49,7 +59,15 @@ void UGrabber::BeginPlay()
 }
 
 void UGrabber::Grab() {
+	bGrabbed = true; // todo change bGrabbed only if an item is grabbed
 	UE_LOG(LogTemp, Warning, TEXT("Grab btn pressed"));
+	//UE_LOG(LogTemp, Warning, TEXT("bGrabbed = %s"), bGrabbed ? TEXT("true") : TEXT("false"));
+}
+
+void UGrabber::Release() {
+	bGrabbed = false;
+	UE_LOG(LogTemp, Warning, TEXT("Release btn pressed"));
+	//UE_LOG(LogTemp, Warning, TEXT("bGrabbed = %s"), bGrabbed ? TEXT("true") : TEXT("false"));
 }
 
 // Called every frame

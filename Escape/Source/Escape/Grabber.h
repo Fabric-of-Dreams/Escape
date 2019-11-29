@@ -22,12 +22,15 @@ protected:
 	// Called when the game starts
 	virtual void BeginPlay() override;
 
+	void CheckInput();
+
 public:	
 	// Called every frame
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 
 private:
 	float Reach = 100.f;
+	bool bGrabbed = false;
 
 	UPhysicsHandleComponent* PhysicsHandle = nullptr;
 
@@ -35,4 +38,5 @@ private:
 
 	// Ray-cast and grab what you reach
 	void Grab();
+	void Release();
 };
