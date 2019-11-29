@@ -22,7 +22,7 @@ protected:
 	// Called when the game starts
 	virtual void BeginPlay() override;
 
-	void CheckInput();
+	void SetupInputComponent();
 
 public:	
 	// Called every frame
@@ -39,4 +39,8 @@ private:
 	// Ray-cast and grab what you reach
 	void Grab();
 	void Release();
+	void FindPhysicsHandleComponent();
+
+	//Return hit for first physics body in reach
+	FHitResult GetFirstPhysicsBodyInReach();
 };
