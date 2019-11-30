@@ -65,6 +65,8 @@ float UOpenDoor::GetTotalMassOfActorsOnPlate()
 		TotalMass += OverlappingActor->FindComponentByClass<UPrimitiveComponent>()->GetMass();
 	}
 
+	UE_LOG(LogTemp, Warning, TEXT("TotalMass = %f"), TotalMass);
+
 	return TotalMass;
 }
 
