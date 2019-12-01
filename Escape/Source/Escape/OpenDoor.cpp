@@ -58,14 +58,16 @@ float UOpenDoor::GetTotalMassOfActorsOnPlate()
 	float TotalMass = 0.f;
 
 	TArray<AActor*> OverlappingActors;
-	PressurePlate->GetOverlappingActors(OUT OverlappingActors);
+
+	if (PressurePlate)
+		PressurePlate->GetOverlappingActors(OUT OverlappingActors);
+	else
+		UE_LOG(LogTemp, Error, TEXT("&s is missing PressurePlate!"), *GetOwner()->GetName());
 
 	for (AActor* OverlappingActor : OverlappingActors)
 	{
 		TotalMass += OverlappingActor->FindComponentByClass<UPrimitiveComponent>()->GetMass();
 	}
-
-	UE_LOG(LogTemp, Warning, TEXT("TotalMass = %f"), TotalMass);
 
 	return TotalMass;
 }
