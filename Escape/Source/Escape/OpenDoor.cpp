@@ -24,11 +24,15 @@ UOpenDoor::UOpenDoor()
 void UOpenDoor::BeginPlay()
 {
 	Super::BeginPlay();
+
+	if (!PressurePlate)
+		UE_LOG(LogTemp, Error, TEXT("&s is missing PressurePlate!"), *GetOwner()->GetName());
 }
 
 void UOpenDoor::OpenDoor()
 {
-	GetOwner()->SetActorRotation(FRotator(0.f, OpenAngle, 0.f));
+	//GetOwner()->SetActorRotation(FRotator(0.f, OpenAngle, 0.f));
+	OnOpenRequest.Broadcast();
 }
 
 void UOpenDoor::CloseDoor()
@@ -61,8 +65,6 @@ float UOpenDoor::GetTotalMassOfActorsOnPlate()
 
 	if (PressurePlate)
 		PressurePlate->GetOverlappingActors(OUT OverlappingActors);
-	else
-		UE_LOG(LogTemp, Error, TEXT("&s is missing PressurePlate!"), *GetOwner()->GetName());
 
 	for (AActor* OverlappingActor : OverlappingActors)
 	{
